@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- macOS: keep the wake daemon running.  cp to ~/Library/LaunchAgents/ then:
+     launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.agentbus.wake.plist
+     Adjust PATH so it finds python3 and your agent CLIs (claude, codex). -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.agentbus.wake</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/sh</string>
+    <string>-c</string>
+    <string>exec python3 "$HOME/.local/share/agent-bus/agentbus.py" wake >> "$HOME/Library/Logs/agentbus-wake.log" 2>&amp;1</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict><key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string></dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+</dict>
+</plist>

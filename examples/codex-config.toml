@@ -1,0 +1,7 @@
+# Add to ~/.codex/config.toml
+[mcp_servers.agentbus]
+url = "https://hub.example-tailnet.ts.net/mcp"
+http_headers = { "X-Agent-Name" = "codex@laptop" }
+tool_timeout_sec = 120                      # wait_for_message long-polls; keep above its timeout_s
+default_tools_approval_mode = "approve"     # otherwise `codex exec` refuses MCP calls
+# bearer_token_env_var = "AGENT_BUS_TOKEN"  # only if the hub uses a token

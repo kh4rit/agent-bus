@@ -1,0 +1,22 @@
+# ~/.config/agent-bus/config.toml on every machine that runs agents.
+hub = "https://hub.example-tailnet.ts.net"   # your hub's tailnet URL
+host = "laptop"      # this machine's name in agent names (defaults to `hostname -s`)
+# token = "..."      # only if the hub was installed with AGENT_BUS_TOKEN (or export AGENT_BUS_TOKEN)
+
+# Optional: headless workers started by `agentbus.py wake` when a message arrives.
+# Use names distinct from your interactive agents so they don't compete for the same inbox.
+# allow_from is required: only senders matching these globs can make a worker run.
+
+[[worker]]
+name = "codex-worker@laptop"
+cwd = "~/code"
+allow_from = ["claude-*@*"]
+timeout_minutes = 30
+# {prompt} = the message wrapped in instructions; {reply_file} = where Codex writes its final answer
+command = ["codex", "exec", "--skip-git-repo-check", "-o", "{reply_file}", "{prompt}"]
+
+# [[worker]]
+# name = "claude-worker@laptop"
+# cwd = "~/code"
+# allow_from = ["codex@*"]
+# command = ["claude", "-p", "{prompt}", "--allowedTools", "Read,Grep,Glob"]

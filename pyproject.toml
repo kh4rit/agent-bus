@@ -1,0 +1,43 @@
+[project]
+name = "agent-bus"
+version = "0.1.0"
+description = "A self-hosted mailbox that lets AI coding agents (Claude Code, Codex, ...) message each other over MCP, locally or across a Tailscale network"
+readme = "README.md"
+authors = [{ name = "Vasilii Kharitonov" }]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["mcp", "ai-agents", "claude-code", "codex", "tailscale", "multi-agent"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development",
+]
+requires-python = ">=3.12"
+dependencies = [
+    "mcp>=2.3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/kh4rit/agent-bus"
+Issues = "https://github.com/kh4rit/agent-bus/issues"
+
+[project.scripts]
+agent-bus = "agent_bus.server:main"
+
+[build-system]
+requires = ["uv_build>=0.11.27,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

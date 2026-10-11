@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 5,
+            "command": "python3 ~/.local/share/agent-bus/agentbus.py hook prompt --tool claude"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 5,
+            "command": "python3 ~/.local/share/agent-bus/agentbus.py hook stop --tool claude"
+          }
+        ]
+      }
+    ]
+  }
+}
